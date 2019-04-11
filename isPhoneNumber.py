@@ -27,3 +27,15 @@ for i in range(len(message)):
     if isPhoneNumber(chunk):# 若檢查結果回傳的值為True則列印出該12個字元變數的值
         print('Phone number found: ' + chunk)
 print('Done')
+
+# 使用正規表示式
+
+
+import re   # 載入模組 
+phoneNumRegex = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d')   # 用原始字串建立篩選
+mo = phoneNumRegex.search('My number is 415-555-4242.')  # 輸入字串查詢
+if mo != None:  # 若查詢的結果不是None
+    print('Phone number found: ' + mo.group())  # 用group函式返回查詢的值
+else:
+    print('Phone number found: None')   # 否則回傳沒有
+
