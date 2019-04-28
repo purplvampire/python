@@ -19,5 +19,20 @@ content = baconFile.read()
 baconFile.close()
 print(content)
 
+# 使用shelve模組儲存純文字檔
+import shelve
+shelfFile = shelve.open('mydata')
+cats = ['Zophie', 'Pooka', 'Simon']
+shelfFile['cats'] = cats
+print(shelfFile['cats'])
+print(list(shelfFile.keys()))   # 將shelfFile的清單轉成清單格式(型別轉換),印出key值(有s)
+print(list(shelfFile.values())) # 將shelfFile的清單轉成清單格式(型別轉換),印出value值(有s)
+shelfFile.close()
+test = type(shelfFile)  # 檢視shelfFile型別
+print(test)
+
+
+
+
 
 
