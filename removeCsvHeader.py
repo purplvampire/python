@@ -4,13 +4,15 @@
 import csv, os
 
 os.makedirs('headerRemoved', exist_ok=True)
-csvRows = []
+csvRows = [] 
 # Loop through every file in the current working directory and printing.
 for csvFilename in os.listdir('.'):
     if not csvFilename.endswith('.csv'):
         continue
+    elif not csvFilename.startswith('NAICS'):
+        continue
     print('Removing header from ' + csvFilename + '...')
-    # Read the CSV file in (skipping first row).    
+    # Read the CSV file in (skipping first row).
     csvFileObj = open(csvFilename)
     readerObj = csv.reader(csvFileObj)
     for row in readerObj:
@@ -19,11 +21,11 @@ for csvFilename in os.listdir('.'):
             continue               
         # Append to list
         csvRows.append(row)
-        # Create a file for write
-        csvFileObj = open(os.path.join('headerRemoved', csvFilename), 'w', newline='')
-        # Create a Writable CSV Object
-        csvWriter = csv.writer(csvFileObj)
-        # Write out the CSV Object to file
-        for row in csvRows:
-            csvWriter.writerow(row)
-    csvFileObj.close()
+# Create a file for write
+csvFileObj = open(os.path.join('headerRemoved','merge.csv'), 'w', newline='')
+# Create a Writable CSV Object
+csvWriter = csv.writer(csvFileObj)
+# Write out the CSV Object to file
+for row in csvRows:
+    csvWriter.writerow(row)
+csvFileObj.close()
