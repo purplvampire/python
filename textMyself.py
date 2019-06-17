@@ -1,6 +1,7 @@
 #! python3
 # textMyself.py - Defines the textmyself() function that texts a message passed to it as a string.
 
+
 # Import twilio SID and Auth_token.
 twilioID = []
 with open('twilioPW.txt', 'r') as f:
@@ -22,3 +23,8 @@ def textmyself(message):
                         to= twilioID[3])
     # Get sending status
     print(message.status)
+
+# Send SMS by command line
+import sys
+message = ' '.join(sys.argv[1:])
+textmyself(message)
