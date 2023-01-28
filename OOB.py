@@ -66,6 +66,8 @@ print(light)
 # 呼叫staticmethod
 book.static_method()
 
+
+
 # 物件繼承
 print("-----Object inheritance-----")
 
@@ -112,3 +114,28 @@ printer.disconnected()
 printer.print(10)
 
 
+print("-----Object Composition-----")
+# 物件的合成
+# 建立書架藍圖
+class BookShelf:
+    def __init__(self, *books):
+        self.books = books
+    
+    def __str__(self):
+        return f"BookShelf with {len(self.books)} books."
+
+# 建立書本藍圖
+class Book:
+    def __init__(self, name):
+        self.name = name
+
+    def __str__(self):
+        return f"Book {self.name}"
+
+# 建立書本
+book = Book("Harry Potter")
+book2 = Book("Python 101")
+
+# 建立書架並放入書本
+shelf = BookShelf(book, book2)
+print(shelf)
