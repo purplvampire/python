@@ -30,6 +30,7 @@ print(student)
 print(student.__repr__())
 
 # classmethod: 用來加工處理預設參數, 再回填到物件參數中
+# staticmethod: 用來當作一個固定輸出功能,不處理填入參數值
 class Book:
     TYPES = ("hardcover", "paperback")
 
@@ -49,6 +50,10 @@ class Book:
     def paperback(cls, name, page_weight):
         return cls(name, cls.TYPES[1], page_weight)
 
+    @staticmethod
+    def static_method():
+        print("Called static_method.")
+
 # 指定預設參數與屬性
 book = Book.hardcover("Harry Potter", 1500)
 light = Book.paperback("Python 101", 600)
@@ -57,3 +62,6 @@ print(book)
 # <Book(Name 'Harry Potter', Type 'hardcover', Weight 1600g)>
 print(light)
 # <Book(Name 'Python 101', Type 'paperback', Weight 600g)>
+
+# 呼叫staticmethod
+book.static_method()
